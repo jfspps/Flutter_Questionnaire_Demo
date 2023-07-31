@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage(this.questionPageFunction, {super.key});
+
+  final void Function() questionPageFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,9 @@ class HomePage extends StatelessWidget {
             height: 40,
           ),
           OutlinedButton.icon(
-            onPressed: () {},
+            // set onPressed to the pointer of questionPageFunction,
+            // not as an anonymous method
+            onPressed: questionPageFunction,
             icon: const Icon(Icons.arrow_right_alt),
             style: OutlinedButton.styleFrom(
               backgroundColor: Colors.deepPurple,
