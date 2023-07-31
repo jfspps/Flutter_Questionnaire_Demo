@@ -24,6 +24,9 @@ class CustomMaterialAppWidget extends StatelessWidget {
                 Image.asset(
                   "assets/images/quiz-logo.png",
                   width: 200,
+                  // add transparency via a white ARGB (use this in preference
+                  // the Opacity widget, which is more resource demanding)
+                  color: const Color.fromARGB(128, 255, 255, 255),
                 ),
                 const SizedBox(
                   height: 40,
