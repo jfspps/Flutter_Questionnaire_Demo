@@ -39,13 +39,13 @@ class CustomMaterialAppWidget extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                ElevatedButton(
+                OutlinedButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(
+                  style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.deepPurple,
                   ),
                   child: const Text(
-                    'Elevated button',
+                    'Outlined button',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
