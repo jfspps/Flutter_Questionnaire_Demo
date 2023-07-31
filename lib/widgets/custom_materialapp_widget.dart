@@ -39,19 +39,20 @@ class CustomMaterialAppWidget extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                OutlinedButton(
+                OutlinedButton.icon(
                   onPressed: () {},
+                  icon: const Icon(Icons.arrow_right_alt),
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.deepPurple,
                   ),
-                  child: const Text(
+                  label: const Text(
                     'Outlined button',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
