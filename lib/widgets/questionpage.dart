@@ -13,7 +13,6 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPage extends State<QuestionPage> {
-
   // at the moment, we build only one question page based on the first element
   final QuizQuestion quizQuestion = questions[0];
 
@@ -23,28 +22,35 @@ class _QuestionPage extends State<QuestionPage> {
     // along the column's main axis
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            quizQuestion.text,
-            style: const TextStyle(
-              color: Colors.white,
+      child: Container(
+        padding: const EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          // this would be the horizontal axis for a Column widget
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              quizQuestion.text,
+              style: const TextStyle(
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          // spread (with the spread operator ...) all answers dynamically to
-          // build matching number of AnswerButton widgets; map() appears to be
-          // equivalent to Java's stream()
-          ...quizQuestion.answers.map((answer) {
-            return AnswerButton(
-              buttonText: answer,
-              onPress: () {},
-            );
-          }),
-        ],
+            const SizedBox(
+              height: 30,
+            ),
+            // spread (with the spread operator ...) all answers dynamically to
+            // build matching (comma-separated) list of AnswerButton widgets;
+            // map() appears to be roughly equivalent to Java's stream() and is
+            // an idempotent method
+            ...quizQuestion.getShuffledAnswerList().map((answer) {
+              return AnswerButton(
+                buttonText: answer,
+                onPress: () {},
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
