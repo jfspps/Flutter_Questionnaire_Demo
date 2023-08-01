@@ -30,9 +30,6 @@ class AnswerButton extends StatelessWidget {
       onPressed: onPress,
       child: Text(
         buttonText,
-        style: const TextStyle(
-          fontSize: 24,
-        ),
       ),
     );
   }
