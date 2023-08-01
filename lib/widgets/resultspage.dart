@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:questionnaire/data/example_questions.dart';
+import 'package:questionnaire/widgets/q_and_a_section.dart';
 
 class ResultsPage extends StatelessWidget {
   const ResultsPage({super.key, required this.submittedAnswers});
@@ -35,7 +36,7 @@ class ResultsPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const Text("List of answers to questions..."),
+            QuestionAndAnswerSection(getSummaryList()),
             const SizedBox(
               height: 30,
             ),
