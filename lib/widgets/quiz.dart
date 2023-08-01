@@ -34,11 +34,13 @@ class _Quiz extends State<Quiz> {
 
     // note that the list "questions" is made accessible through
     // example_questions.dart
-    if (selectedAnswers.length == questions.length){
+    if (selectedAnswers.length == questions.length) {
       selectedAnswers = [];
 
       setState(() {
-        activeScreen = const ResultsPage();
+        activeScreen = ResultsPage(
+          submittedAnswers: selectedAnswers,
+        );
       });
     }
   }
