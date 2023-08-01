@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:questionnaire/widgets/homepage.dart';
 import 'package:questionnaire/widgets/questionpage.dart';
+import 'package:questionnaire/data/example_questions.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -24,11 +25,21 @@ class _Quiz extends State<Quiz> {
   // not be known on instantiation so instead we make this nullable
   Widget? activeScreen;
 
-  // selectedAnswers cannot be reassigned, however, elements can be added
-  final List<String> selectedAnswers = [];
+  // allow this less to be reset when all read by user
+  List<String> selectedAnswers = [];
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+
+    // note that the list "questions" is made accessible through
+    // example_questions.dart
+    if (selectedAnswers.length == questions.length){
+      selectedAnswers = [];
+
+      setState(() {
+        activeScreen = HomePage(switchScreen);
+      });
+    }
   }
 
   void switchScreen() {

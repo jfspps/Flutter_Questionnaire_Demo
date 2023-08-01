@@ -22,14 +22,12 @@ class _QuestionPage extends State<QuestionPage> {
   var currentQuestionIndex = 0;
 
   void onAnswer(String selectedAnswer) {
-    if (currentQuestionIndex + 1 < questions.length) {
-      // get access to the widget's properties and methods related to this State
-      widget.onSelectAnswer(selectedAnswer);
+    // get access to related widget's properties and methods
+    widget.onSelectAnswer(selectedAnswer);
 
-      setState(() {
-        currentQuestionIndex++;
-      });
-    }
+    setState(() {
+      currentQuestionIndex++;
+    });
   }
 
   @override
