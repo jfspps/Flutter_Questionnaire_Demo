@@ -43,3 +43,8 @@ class _Quiz extends State<Quiz> {
     );
   }
 }
+
+// alternatively, define a string field under _Quiz and use this to determine
+// what to assign to the Container's child widget via a ternary operator
+// e.g. someString == 'question-page' ? const QuestionPage() : const HomePage()
+// with parameters for the widget constructors as needed
