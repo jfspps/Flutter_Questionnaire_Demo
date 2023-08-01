@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:questionnaire/data/example_questions.dart';
-import 'package:questionnaire/models/question_entity.dart';
 import 'package:questionnaire/widgets/answer_button.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -13,11 +12,21 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPage extends State<QuestionPage> {
-  // at the moment, we build only one question page based on the first element
-  final QuizQuestion quizQuestion = questions[0];
+  // now select each question
+  var currentQuestionIndex = 0;
+
+  void onAnswer() {
+    if (currentQuestionIndex + 1 < questions.length) {
+      setState(() {
+        currentQuestionIndex++;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final currentQuestion = questions[currentQuestionIndex];
+
     // build a SizedBox of maximum width and then centre column child widgets
     // along the column's main axis
     return SizedBox(
@@ -30,7 +39,7 @@ class _QuestionPage extends State<QuestionPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              quizQuestion.text,
+              currentQuestion.text,
               style: const TextStyle(
                 color: Colors.white,
               ),
@@ -43,10 +52,10 @@ class _QuestionPage extends State<QuestionPage> {
             // build matching (comma-separated) list of AnswerButton widgets;
             // map() appears to be roughly equivalent to Java's stream() and is
             // an idempotent method
-            ...quizQuestion.getShuffledAnswerList().map((answer) {
+            ...currentQuestion.getShuffledAnswerList().map((answer) {
               return AnswerButton(
                 buttonText: answer,
-                onPress: () {},
+                onPress: onAnswer,
               );
             }),
           ],
