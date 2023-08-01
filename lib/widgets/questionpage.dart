@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:questionnaire/data/example_questions.dart';
 import 'package:questionnaire/widgets/answer_button.dart';
 
@@ -40,8 +41,11 @@ class _QuestionPage extends State<QuestionPage> {
           children: [
             Text(
               currentQuestion.text,
-              style: const TextStyle(
+              // import Google fonts package and apply here (see README.md)
+              style: GoogleFonts.lato(
+                fontSize: 24,
                 color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),

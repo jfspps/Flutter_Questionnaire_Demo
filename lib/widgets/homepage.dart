@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage(this.questionPageFunction, {super.key});
@@ -21,13 +22,13 @@ class HomePage extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          const Text(
+          Text(
             'Questionnaire app',
-            style: TextStyle(
+            style: GoogleFonts.lato(
+              fontSize: 24,
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 24,
-            ),
+            )
           ),
           const SizedBox(
             height: 40,
