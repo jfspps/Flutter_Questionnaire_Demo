@@ -12,7 +12,6 @@ class Quiz extends StatefulWidget {
 }
 
 class _Quiz extends State<Quiz> {
-
   // this initialises fields in the order given after all other non-null fields
   // have been initialised; this is run only once (unlike build())
   @override
@@ -25,9 +24,17 @@ class _Quiz extends State<Quiz> {
   // not be known on instantiation so instead we make this nullable
   Widget? activeScreen;
 
+  // selectedAnswers cannot be reassigned, however, elements can be added
+  final List<String> selectedAnswers = [];
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+  }
+
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionPage();
+      // allow QuestionPage to update this class' selectedAnswers list
+      activeScreen = QuestionPage(onSelectAnswer: chooseAnswer);
     });
   }
 

@@ -4,8 +4,8 @@ class AnswerButton extends StatelessWidget {
   final String buttonText;
   final void Function() onPress;
 
-  // for example sake, assign fields as positional arguments (which are optional);
-  // final fields must be assigned, hence positional arguments are made mandatory
+  // for example sake, assign fields as named arguments (which are optional);
+  // final fields must be assigned, hence named arguments are made mandatory
   // by marking with the required keyword
   const AnswerButton({
     required this.buttonText,

@@ -4,7 +4,12 @@ import 'package:questionnaire/data/example_questions.dart';
 import 'package:questionnaire/widgets/answer_button.dart';
 
 class QuestionPage extends StatefulWidget {
-  const QuestionPage({super.key});
+  const QuestionPage({
+    super.key,
+    required this.onSelectAnswer,
+  });
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<StatefulWidget> createState() {
@@ -16,8 +21,11 @@ class _QuestionPage extends State<QuestionPage> {
   // now select each question
   var currentQuestionIndex = 0;
 
-  void onAnswer() {
+  void onAnswer(String selectedAnswer) {
     if (currentQuestionIndex + 1 < questions.length) {
+      // get access to the widget's properties and methods related to this State
+      widget.onSelectAnswer(selectedAnswer);
+
       setState(() {
         currentQuestionIndex++;
       });
@@ -59,7 +67,11 @@ class _QuestionPage extends State<QuestionPage> {
             ...currentQuestion.getShuffledAnswerList().map((answer) {
               return AnswerButton(
                 buttonText: answer,
-                onPress: onAnswer,
+                // AnswerButton's onPress is defined by the anonymous function,
+                // not by onAnswer, and only called by AnswerButtons onPressed
+                onPress: () {
+                  onAnswer(answer);
+                },
               );
             }),
           ],
