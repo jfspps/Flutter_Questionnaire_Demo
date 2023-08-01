@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:questionnaire/widgets/answer_button.dart';
 
 class QuestionPage extends StatefulWidget {
   const QuestionPage({super.key});
@@ -20,16 +21,16 @@ class _QuestionPage extends State<QuestionPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('Some question'),
+          const Text(
+            'Some question',
+            style: TextStyle(
+              fontSize: 24,
+            ),
+          ),
           const SizedBox(
             height: 30,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text(
-              'A possible answer',
-            ),
-          )
+          AnswerButton(buttonText: 'Some answer', onPress: () {})
         ],
       ),
     );
