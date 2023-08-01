@@ -14,6 +14,7 @@ class QuestionPage extends StatefulWidget {
 
 class _QuestionPage extends State<QuestionPage> {
 
+  // at the moment, we build only one question page based on the first element
   final QuizQuestion quizQuestion = questions[0];
 
   @override
@@ -34,7 +35,15 @@ class _QuestionPage extends State<QuestionPage> {
           const SizedBox(
             height: 30,
           ),
-          AnswerButton(buttonText: quizQuestion.answers[0], onPress: () {})
+          // spread (with the spread operator ...) all answers dynamically to
+          // build matching number of AnswerButton widgets; map() appears to be
+          // equivalent to Java's stream()
+          ...quizQuestion.answers.map((answer) {
+            return AnswerButton(
+              buttonText: answer,
+              onPress: () {},
+            );
+          }),
         ],
       ),
     );
