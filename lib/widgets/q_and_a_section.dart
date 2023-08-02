@@ -19,6 +19,7 @@ class QuestionAndAnswerSection extends StatelessWidget {
               return Row(
                 // note here to read children of a row in order from left to right
                 // compared to Column children, which is top to bottom
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Card(
                     elevation: 0,
