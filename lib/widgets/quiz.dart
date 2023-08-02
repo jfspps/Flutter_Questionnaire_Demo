@@ -38,9 +38,15 @@ class _Quiz extends State<Quiz> {
       setState(() {
         activeScreen = ResultsPage(
           submittedAnswers: selectedAnswers,
+          restart: restartQuiz,
         );
       });
     }
+  }
+
+  void restartQuiz() {
+    selectedAnswers.clear();
+    switchScreen();
   }
 
   void switchScreen() {

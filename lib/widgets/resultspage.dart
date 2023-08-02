@@ -3,10 +3,15 @@ import 'package:questionnaire/data/example_questions.dart';
 import 'package:questionnaire/widgets/q_and_a_section.dart';
 
 class ResultsPage extends StatelessWidget {
-  ResultsPage({super.key, required this.submittedAnswers});
+  const ResultsPage({
+    super.key,
+    required this.submittedAnswers,
+    required this.restart,
+  });
 
   final List<String> submittedAnswers;
-  
+  final void Function() restart;
+
   List<Map<String, Object>> getSummaryList() {
     List<Map<String, Object>> submittedList = [];
 
@@ -32,7 +37,7 @@ class ResultsPage extends StatelessWidget {
     final correctAnswers = summaryList.where((response) {
       return response['correct_answer'] == response['user_answer'];
     }).length;
-    
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -40,7 +45,9 @@ class ResultsPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("You answered $correctAnswers out of $numberOfQuestionsAsked questions correctly"),
+            Text(
+              "You answered $correctAnswers out of $numberOfQuestionsAsked questions correctly",
+            ),
             const SizedBox(
               height: 30,
             ),
@@ -48,9 +55,16 @@ class ResultsPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text("Restart the quiz"),
+            TextButton.icon(
+              onPressed: restart,
+              icon: const Icon(Icons.refresh),
+              label: const Text(
+                'Restart quiz',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
             ),
           ],
         ),
