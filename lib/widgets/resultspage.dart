@@ -3,10 +3,10 @@ import 'package:questionnaire/data/example_questions.dart';
 import 'package:questionnaire/widgets/q_and_a_section.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({super.key, required this.submittedAnswers});
+  ResultsPage({super.key, required this.submittedAnswers});
 
   final List<String> submittedAnswers;
-
+  
   List<Map<String, Object>> getSummaryList() {
     List<Map<String, Object>> submittedList = [];
 
@@ -25,6 +25,14 @@ class ResultsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryList = getSummaryList();
+    final numberOfQuestionsAsked = questions.length;
+
+    // similar to Java's stream().filter().toList().size();
+    final correctAnswers = summaryList.where((response) {
+      return response['correct_answer'] == response['user_answer'];
+    }).length;
+    
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -32,11 +40,11 @@ class ResultsPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("You answered X out of Y questions correctly"),
+            Text("You answered $correctAnswers out of $numberOfQuestionsAsked questions correctly"),
             const SizedBox(
               height: 30,
             ),
-            QuestionAndAnswerSection(getSummaryList()),
+            QuestionAndAnswerSection(summaryList),
             const SizedBox(
               height: 30,
             ),
